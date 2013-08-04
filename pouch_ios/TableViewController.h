@@ -11,6 +11,6 @@
 @interface TableViewController : UITableViewController <UITableViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *pouchArrayFromAFNetworking;
-@property (strong, nonatomic) NSArray *finishedPouchArray;
+@property (strong, nonatomic) NSMutableArray *finishedPouchArray;
 
 @end

@@ -49,13 +49,19 @@
     return self;
 }
 
+- (void) refresh{
+    [self makeRestuarantRequests];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.pouchArrayFromAFNetworking = [[NSMutableArray alloc] init];
-    self.finishedPouchArray = [[NSArray alloc] init];
+    self.finishedPouchArray = [[NSMutableArray alloc] init];
     [self makeRestuarantRequests];
-
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Show" style:UIBarButtonItemStylePlain target:self action:@selector(refresh)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p2.png"]];
 
 //    [[UINavigationBar appearance] setBackgroundColor:[UIColor blackColor]];
