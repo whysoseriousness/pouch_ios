@@ -56,6 +56,10 @@
     self.finishedPouchArray = [[NSArray alloc] init];
     [self makeRestuarantRequests];
 
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"p2.png"]];
+
+//    [[UINavigationBar appearance] setBackgroundColor:[UIColor blackColor]];
+//    [[UINavigationBar appearance] setTitle:@"WAT"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -90,6 +94,7 @@
     
     // Configure the cell...
     cell.textLabel.text = [[[[self.pouchArrayFromAFNetworking objectAtIndex:indexPath.section] objectForKey:@"feed"] objectAtIndex: indexPath.row] objectForKey:@"title"];
+    cell.detailTextLabel.text = [[[[self.pouchArrayFromAFNetworking objectAtIndex:indexPath.section] objectForKey:@"feed"] objectAtIndex: indexPath.row] objectForKey:@"author"];
 //    cell.textLabel.text = @"test";
     return cell;
 }
@@ -100,8 +105,15 @@
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     ViewController *detailViewController = (ViewController *)segue.destinationViewController;
     detailViewController.page_content = [[[[self.pouchArrayFromAFNetworking objectAtIndex:indexPath.section] objectForKey:@"feed"] objectAtIndex: indexPath.row] objectForKey:@"page_content"];
+    detailViewController.article_title = [[[[self.pouchArrayFromAFNetworking objectAtIndex:indexPath.section] objectForKey:@"feed"] objectAtIndex: indexPath.row] objectForKey:@"title"];
+
 }
 
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[self.pouchArrayFromAFNetworking objectAtIndex:section] objectForKey:@"name"];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

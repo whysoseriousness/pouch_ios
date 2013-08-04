@@ -17,7 +17,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.webView loadHTMLString:self.page_content baseURL:nil ];
+    
+    NSString * pc = [[self.page_content stringByReplacingOccurrencesOfString:@"\\\"" withString:@"\""] stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
+    pc = [NSString stringWithFormat:@"<br /><center><h3>%@</h3></center><hr /><br /><div style = \"'font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;\">%@</div>", self.article_title, pc];
+//    [[UINavigationBar appearance] setTitle:self.article_title];
+    [self.webView loadHTMLString:pc baseURL:nil ];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

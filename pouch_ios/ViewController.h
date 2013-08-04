@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController
 
 @property (strong, nonatomic) NSString *page_content;
+@property (strong, nonatomic) NSString *article_title;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 
